@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gps_not_enabled_exception_title">GPS выключен</string>
+    <string name="gps_not_enabled_exception_message">Пожалуйста, включите GPS для доступа к вашему местоположению</string>
+    <string name="location_permissions_not_granted_exception_title">Разрешения на доступ к местоположению не предоставлены</string>
+    <string name="location_permissions_not_granted_exception_message">Пожалуйста, предоставьте разрешения на доступ к вашему местоположению</string>
+</resources>

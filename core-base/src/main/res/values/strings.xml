@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gps_not_enabled_exception_title">GPS Not Enabled</string>
+    <string name="gps_not_enabled_exception_message">Please enable GPS to access your location</string>
+    <string name="location_permissions_not_granted_exception_title">Location Permissions Not Granted</string>
+    <string name="location_permissions_not_granted_exception_message">Please grant location permissions to access your location</string>
+</resources>
