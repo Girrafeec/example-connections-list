@@ -3,4 +3,4 @@
 package com.girrafeecstud.core_base.base
 
 fun Double.roundTo(numDecimalPlaces: Int): Double =
-    "%.${numDecimalPlaces}f".format(this).toDouble()
+    "%.${numDecimalPlaces}f".format(this).replace(',', '.').toDouble()

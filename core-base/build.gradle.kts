@@ -45,7 +45,7 @@ dependencies {
     testImplementation(Dependencies.Mockito.mockitoKotlin)
     testImplementation(Dependencies.Mockito.mockitoInline)
 
-    // Dagger-Hilt
+    // Dagger
     implementation(Dependencies.Dagger.dagger)
     kapt(Dependencies.Dagger.daggerCompiler)
 

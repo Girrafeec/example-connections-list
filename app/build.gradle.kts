@@ -70,34 +70,20 @@ dependencies {
     implementation(Dependencies.Jetpack.Navigation.navigationFragmentKtx)
     implementation(Dependencies.Jetpack.Navigation.navigationUiKtx)
 
-    // Retrofit
-    implementation(Dependencies.Retrofit.retrofit)
-    implementation(Dependencies.Retrofit.retrofitConverterGson)
-    implementation(Dependencies.Retrofit.retrofitConverterScalars)
-
-    // OkHttp3
-    implementation(Dependencies.OkHttp3.okHttp3)
-
-    // Room
-    implementation(Dependencies.Jetpack.Room.room)
-    kapt(Dependencies.Jetpack.Room.roomCompiler)
-    implementation(Dependencies.Jetpack.Room.roomKtx)
-
     // ViewModel, LiveData
     implementation(Dependencies.Jetpack.ViewModel.viewModel)
 
     // Coroutines
     implementation(Dependencies.Coroutines.coroutines)
 
-    // Picasso
-    implementation(Dependencies.Picasso.picasso)
-
-    // Glide
-    implementation(Dependencies.Glide.glide)
-    kapt(Dependencies.Glide.glideCompiler)
-
     implementation(project(":core-base"))
     implementation(project(":core-ui"))
     implementation(project(":core-components-api"))
     implementation(project(":core-components-impl"))
+    implementation(project(":feature-location-api"))
+    implementation(project(":feature-location-impl"))
+    implementation(project(":feature-connections-api"))
+    implementation(project(":feature-connections-impl"))
+    implementation(project(":feature-location-tracker-api"))
+    implementation(project(":feature-location-tracker-impl"))
 }
