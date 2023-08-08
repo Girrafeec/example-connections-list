@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.girrafeecstud.example_connections_list.connections_impl"
+    namespace = "com.girrafeecstud.dependency_coordinator_api"
     compileSdk = 33
 
     defaultConfig {
@@ -35,14 +35,8 @@ android {
 
 dependencies {
 
-    // Unit-tests
-    testImplementation(Dependencies.jUnit.jUnit)
-    testImplementation(Dependencies.Coroutines.coroutinesTest)
-    testImplementation(Dependencies.Mockito.mockitoKotlin)
-    testImplementation(Dependencies.Mockito.mockitoInline)
-
-    // Coroutines
-    implementation(Dependencies.Coroutines.coroutines)
+    // Core
+    implementation(Dependencies.AndroidX.Core.coreKtx)
 
     // Dagger
     implementation(Dependencies.Dagger.dagger)
@@ -50,8 +44,4 @@ dependencies {
 
     implementation(project(":core-base"))
     implementation(project(":core-components-api"))
-    implementation(project(":feature-location-api"))
-    implementation(project(":feature-connections-api"))
-    implementation(project(":feature-location-tracker-api"))
-    implementation(project(":dependency-coordinator-api"))
 }

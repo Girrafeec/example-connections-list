@@ -31,14 +31,20 @@ interface LocationTrackerFeatureComponent : LocationTrackerFeatureApi {
 
         private var _locationTrackerFeatureComponent: LocationTrackerFeatureComponent? = null
 
-        val locationTrackerFeatureComponent get() = _locationTrackerFeatureComponent!!
-
-        fun init(dependencies: LocationTrackerDependencies) {
+        @Synchronized
+        fun initAndGet(dependencies: LocationTrackerDependencies): LocationTrackerFeatureComponent {
             if (_locationTrackerFeatureComponent == null)
                 _locationTrackerFeatureComponent = DaggerLocationTrackerFeatureComponent
                     .builder()
                     .dependencies(dependencies = dependencies)
                     .build()
+            return _locationTrackerFeatureComponent!!
+        }
+
+        fun get(): LocationTrackerFeatureComponent {
+            if (_locationTrackerFeatureComponent == null)
+                throw RuntimeException("LocationTrackerFeatureComponent was not initialized. You must call 'initAndGet()' method.")
+            return _locationTrackerFeatureComponent!!
         }
 
         fun reset() {

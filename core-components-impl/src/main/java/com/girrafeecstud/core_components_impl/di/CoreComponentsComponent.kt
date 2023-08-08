@@ -25,15 +25,14 @@ interface CoreComponentsComponent : CoreComponentsApi {
 
         private var _coreComponentsComponent: CoreComponentsComponent? = null
 
-        val coreComponentsComponent: CoreComponentsComponent
-            get() = _coreComponentsComponent!!
-
-        fun init(dependencies: ICoreComponentsDependencies) {
+        @Synchronized
+        fun initAndGet(dependencies: ICoreComponentsDependencies): CoreComponentsComponent {
             if (_coreComponentsComponent == null)
                 _coreComponentsComponent = DaggerCoreComponentsComponent
                     .builder()
                     .dependencies(dependencies = dependencies)
                     .build()
+            return _coreComponentsComponent!!
         }
 
         fun reset() {
