@@ -18,6 +18,7 @@ import com.girrafeecstud.example_connections_list.connections_api.domain.usecase
 import com.girrafeecstud.example_connections_list.connections_api.domain.usecase.IGetConnectionsWithDistanceToUserUseCase
 import com.girrafeecstud.example_connections_list.connections_api.engine.ConnectionsWithDistanceEngineState
 import com.girrafeecstud.example_connections_list.connections_impl.di.ConnectionsFeatureComponent
+import com.girrafeecstud.example_connections_list.connections_impl.di.ConnectionsFeatureComponentHolder
 import com.girrafeecstud.example_connections_list.connections_impl.util.ConnectionsFeatureUtils
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -48,12 +49,13 @@ class ConnectionsWithDistanceService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        ConnectionsFeatureComponent.get().inject(service = this)
+        ConnectionsFeatureComponentHolder.getComponent().inject(service = this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         serviceScope.cancel()
+        ConnectionsFeatureComponentHolder.reset()
     }
 
     inner class ConnectionsWithDistanceServiceBinder : Binder() {
@@ -134,18 +136,13 @@ class ConnectionsWithDistanceService : Service() {
                         onException = { exception ->
                             when (exception) {
                                 ExceptionType.GPS_NOT_ENABLED ->
-//                                    if (!_state.value.isGpsNeeded)
-                                        _state.update {
-                                            it.copy(isGpsNeeded = true)
-                                        }
+                                    _state.update {
+                                        it.copy(isGpsNeeded = true)
+                                    }
                                 ExceptionType.LOCATION_PERMISSIONS_NOT_GRANTED ->
-                                     /* For not showing special message all the time while service is trying
-                                     to get list with distances
-                                      */
-//                                    if (!_state.value.isLocationPermissionNeeded)
-                                        _state.update {
-                                            it.copy(isLocationPermissionNeeded = true)
-                                        }
+                                    _state.update {
+                                        it.copy(isLocationPermissionNeeded = true)
+                                    }
                             }
                         }
                     )

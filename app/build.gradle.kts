@@ -87,8 +87,7 @@ dependencies {
     implementation(project(":feature-connections-api"))
     implementation(project(":feature-connections-impl"))
     implementation(project(":feature-connections-list"))
-    implementation(project(":dependency-coordinator-api"))
-    implementation(project(":dependency-coordinator-impl"))
+    implementation(project(":dependency-coordinator"))
     implementation(project(":navigation-api"))
     implementation(project(":navigation-impl"))
 

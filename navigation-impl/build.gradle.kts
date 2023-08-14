@@ -47,6 +47,7 @@ dependencies {
     implementation(Dependencies.Coroutines.coroutines)
 
     implementation(project(":navigation-api"))
-    implementation(project(":dependency-coordinator-api"))
     implementation(project(":feature-connections-list"))
+    implementation(project(":dependency-coordinator"))
+
 }

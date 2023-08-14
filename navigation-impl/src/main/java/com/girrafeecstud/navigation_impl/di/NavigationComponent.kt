@@ -17,8 +17,6 @@ interface NavigationComponent : NavigationApi {
     @Component.Builder
     interface Builder {
 
-        fun dependencies(dependencies: NavigationDependencies): Builder
-
         fun build(): NavigationComponent
 
     }
@@ -27,11 +25,11 @@ interface NavigationComponent : NavigationApi {
 
         private var _navigationComponent: NavigationComponent? = null
 
-        fun initAndGet(dependencies: NavigationDependencies): NavigationComponent {
+        @Synchronized
+        fun initAndGet(): NavigationComponent {
             if (_navigationComponent == null)
                 _navigationComponent = DaggerNavigationComponent
                     .builder()
-                    .dependencies(dependencies = dependencies)
                     .build()
             return _navigationComponent!!
         }
@@ -47,13 +45,5 @@ interface NavigationComponent : NavigationApi {
         }
 
     }
-
-    @Singleton
-    @Component(
-        dependencies = [
-            DependencyCoordinatorApi::class
-        ]
-    )
-    interface NavigationDependenciesComponent : NavigationDependencies
 
 }

@@ -46,7 +46,6 @@ dependencies {
     implementation(Dependencies.Coroutines.coroutines)
 
     implementation(project(":core-base"))
-    implementation(project(":dependency-coordinator-api"))
     implementation(project(":core-components-api"))
     implementation(project(":core-components-impl"))
     implementation(project(":feature-location-api"))

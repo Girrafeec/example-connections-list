@@ -9,8 +9,8 @@ class ConnectionsListExternalScreensNavigator @Inject constructor(
     private val flowNavigator: FlowNavigator
 ) : IConnectionsListExternalScreensNavigator {
 
-    // This method uses FlowNavigator for opening screen located in another module
-    // in relation to the current module.
-    // Also some data can be sent as input parameter/-s.
+    /* This method uses FlowNavigator for opening screen located in another module
+    ** in relation to the current module.
+    ** Also some data can be sent as input parameter/-s. */
     override fun openSomeScreen() {}
 }

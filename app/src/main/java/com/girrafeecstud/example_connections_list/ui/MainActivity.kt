@@ -6,15 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.girrafeecstud.dependency_coordinator_impl.UnitCreationRequestHandler
-import com.girrafeecstud.dependency_coordinator_impl.UnitCreationRequestObserver
-import com.girrafeecstud.dependency_coordinator_impl.UnitCreationRequestProvider
 import com.girrafeecstud.example_connections_list.R
 import com.girrafeecstud.example_connections_list.databinding.ActivityMainBinding
 import com.girrafeecstud.example_connections_list.di.AppComponent
 import com.girrafeecstud.navigation_impl.FlowDestination
-import com.girrafeecstud.navigation_impl.navigator.FlowNavigator
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,5 +30,10 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.main_fragment_container) as NavHostFragment
 
         navController = navHostFragment.navController
+
+//        AppComponent.get().flowNavigator().setNavController(navController = navController)
+//        AppComponent.get().flowNavigator().setStartDestination(
+//            destination = FlowDestination.ConnectionsListFlow
+//        )
     }
 }

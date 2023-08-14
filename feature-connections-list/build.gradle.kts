@@ -82,6 +82,5 @@ dependencies {
     implementation(project(":core-components-api"))
     implementation(project(":feature-location-api"))
     implementation(project(":feature-connections-api"))
-    implementation(project(":dependency-coordinator-api"))
     implementation(project(":navigation-api"))
 }

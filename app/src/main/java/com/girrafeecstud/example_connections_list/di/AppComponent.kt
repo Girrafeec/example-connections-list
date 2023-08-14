@@ -2,15 +2,7 @@
 
 package com.girrafeecstud.example_connections_list.di
 
-import android.content.Context
-import com.girrafeecstud.dependency_coordinator_api.di.DependencyCoordinatorApi
-import com.girrafeecstud.dependency_coordinator_impl.IUnitCreationRequestProvider
-import com.girrafeecstud.dependency_coordinator_impl.UnitCreationRequestHandler
-import com.girrafeecstud.dependency_coordinator_impl.UnitCreationRequestObserver
-import com.girrafeecstud.dependency_coordinator_impl.UnitCreationRequestProvider
 import com.girrafeecstud.example_connections_list.app.ConnectionsApp
-import com.girrafeecstud.example_connections_list.ui.MainActivity
-import com.girrafeecstud.navigation_api.di.NavigationApi
 import com.girrafeecstud.navigation_impl.navigator.FlowNavigator
 import dagger.Component
 import javax.inject.Singleton
@@ -19,9 +11,9 @@ import javax.inject.Singleton
 @Component
 interface AppComponent {
 
-//    fun inject(activity: MainActivity)
-
     fun inject(application: ConnectionsApp)
+
+    fun flowNavigator(): FlowNavigator
 
     @Component.Builder
     interface Builder {

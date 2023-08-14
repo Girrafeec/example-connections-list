@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.girrafeecstud.core_ui.ui.BaseFlowFragment
 import com.girrafeecstud.example_connections_list.connections_list.R
 import com.girrafeecstud.example_connections_list.connections_list.databinding.FragmentConnectionsListFlowBinding
+import com.girrafeecstud.example_connections_list.connections_list.di.ConnectionsListFeatureComponentHolder
 import com.girrafeecstud.example_connections_list.connections_list.di.component.ConnectionsListFeatureComponent
 
 class ConnectionsListFlowFragment : BaseFlowFragment(
@@ -22,8 +23,10 @@ class ConnectionsListFlowFragment : BaseFlowFragment(
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        ConnectionsListFeatureComponent.get().inject(this)
+        ConnectionsListFeatureComponentHolder.getComponent().inject(this)
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +40,7 @@ class ConnectionsListFlowFragment : BaseFlowFragment(
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        ConnectionsListFeatureComponentHolder.reset()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

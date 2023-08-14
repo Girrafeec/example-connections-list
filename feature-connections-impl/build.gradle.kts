@@ -53,5 +53,4 @@ dependencies {
     implementation(project(":feature-location-api"))
     implementation(project(":feature-connections-api"))
     implementation(project(":feature-location-tracker-api"))
-    implementation(project(":dependency-coordinator-api"))
 }

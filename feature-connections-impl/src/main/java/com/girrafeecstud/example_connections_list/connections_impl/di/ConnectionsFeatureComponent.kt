@@ -29,26 +29,13 @@ interface ConnectionsFeatureComponent : ConnectionsFeatureApi {
 
     companion object {
 
-        private var _connectionsFeatureComponent: ConnectionsFeatureComponent? = null
 
         @Synchronized
         fun initAndGet(dependencies: ConnectionsFeatureDependencies): ConnectionsFeatureComponent {
-            if (_connectionsFeatureComponent == null)
-                _connectionsFeatureComponent = DaggerConnectionsFeatureComponent
-                    .builder()
-                    .dependencies(dependencies = dependencies)
-                    .build()
-            return _connectionsFeatureComponent!!
-        }
-
-        fun get(): ConnectionsFeatureComponent {
-            if (_connectionsFeatureComponent == null)
-                throw RuntimeException("ConnectionsFeatureComponent was not initialized. You must call 'initAndGet(dependencies: ConnectionsFeatureDependencies)' method.")
-            return _connectionsFeatureComponent!!
-        }
-
-        fun reset() {
-            _connectionsFeatureComponent = null
+            return DaggerConnectionsFeatureComponent
+                .builder()
+                .dependencies(dependencies = dependencies)
+                .build()
         }
 
     }

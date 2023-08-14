@@ -2,13 +2,14 @@
 
 package com.girrafeecstud.example_connections_list.connections_api.di
 
+import com.girrafeecstud.core_base.di.IComponentApi
 import com.girrafeecstud.example_connections_list.connections_api.domain.repository.IConnectionsRepository
 import com.girrafeecstud.example_connections_list.connections_api.data.IConnectionsDataSource
 import com.girrafeecstud.example_connections_list.connections_api.domain.repository.IConnectionsWithDistanceRepository
 import com.girrafeecstud.example_connections_list.connections_api.engine.IConnectionsEngine
 import com.girrafeecstud.example_connections_list.connections_api.engine.IConnectionsWithDistanceEngine
 
-interface ConnectionsFeatureApi {
+interface ConnectionsFeatureApi : IComponentApi {
 
     fun getConnectionsDataSource(): IConnectionsDataSource
 

@@ -2,10 +2,10 @@
 
 package com.girrafeecstud.navigation_api
 
-interface INavigator<in INavigationDestination> {
+interface INavigator<in Destination: INavigationDestination> {
 
-    fun navigateToDestination(destination: INavigationDestination)
+    fun navigateToDestination(destination: Destination)
 
-    fun setStartDestination(destination: INavigationDestination)
+    fun setStartDestination(destination: Destination)
 
 }

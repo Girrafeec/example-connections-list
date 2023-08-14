@@ -9,6 +9,7 @@ import android.os.IBinder
 import com.girrafeecstud.core_base.domain.base.BusinessResult
 import com.girrafeecstud.location_tracker_impl.di.LocationTrackerFeatureComponent
 import com.girrafeecstud.location_tracker_api.domain.IGetLastKnownLocationUseCase
+import com.girrafeecstud.location_tracker_impl.di.LocationTrackerFeatureComponentHolder
 import com.girrafeecstud.location_tracker_impl.engine.LocationTrackerState
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -32,7 +33,7 @@ class LocationTrackerService : Service() {
     }
 
     override fun onCreate() {
-        LocationTrackerFeatureComponent.get().inject(this)
+        LocationTrackerFeatureComponentHolder.getComponent().inject(this)
         super.onCreate()
     }
 
@@ -45,6 +46,7 @@ class LocationTrackerService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         locationTrackerServiceScope.cancel()
+        LocationTrackerFeatureComponentHolder.reset()
     }
 
     override fun onBind(p0: Intent?): IBinder {

@@ -35,6 +35,13 @@ interface CoreComponentsComponent : CoreComponentsApi {
             return _coreComponentsComponent!!
         }
 
+        fun get(): CoreComponentsComponent {
+            checkNotNull(_coreComponentsComponent) {
+                ("CoreComponentsComponent is not initialized. You must call 'dependencies: ICoreComponentsDependencies)' method.")
+            }
+            return _coreComponentsComponent!!
+        }
+
         fun reset() {
             _coreComponentsComponent = null
         }
