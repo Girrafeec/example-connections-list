@@ -1,7 +1,8 @@
 /* Created by Girrafeec */
 
-package com.girrafeecstud.navigation_impl
+package com.girrafeecstud.example_connections_list.navigation
 
+import com.girrafeecstud.example_connections_list.R
 import com.girrafeecstud.navigation_api.INavigationDestination
 
 sealed class FlowDestination(

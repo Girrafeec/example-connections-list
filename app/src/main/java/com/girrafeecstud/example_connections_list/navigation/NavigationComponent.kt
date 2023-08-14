@@ -1,16 +1,14 @@
 /* Created by Girrafeec */
 
-package com.girrafeecstud.navigation_impl.di
+package com.girrafeecstud.example_connections_list.navigation
 
-import com.girrafeecstud.dependency_coordinator_api.di.DependencyCoordinatorApi
 import com.girrafeecstud.navigation_api.di.NavigationApi
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [NavigationModule::class],
-    dependencies = [NavigationDependencies::class]
+    modules = [NavigationModule::class]
 )
 interface NavigationComponent : NavigationApi {
 

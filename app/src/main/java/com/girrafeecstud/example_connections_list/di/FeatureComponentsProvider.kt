@@ -1,6 +1,6 @@
 /* Created by Girrafeec */
 
-package com.girrafeecstud.dependency_coordinator_impl
+package com.girrafeecstud.example_connections_list.di
 
 import com.girrafeecstud.example_connections_list.connections_api.di.ConnectionsFeatureApi
 import com.girrafeecstud.example_connections_list.connections_impl.di.ConnectionsFeatureComponentHolder
@@ -12,7 +12,7 @@ import com.girrafeecstud.location_impl.di.LocationFeatureComponent
 import com.girrafeecstud.location_tracker_api.di.LocationTrackerFeatureApi
 import com.girrafeecstud.location_tracker_impl.di.DaggerLocationTrackerFeatureComponent_LocationTrackerFeatureDependenciesComponent
 import com.girrafeecstud.location_tracker_impl.di.LocationTrackerFeatureComponentHolder
-import com.girrafeecstud.navigation_impl.di.NavigationComponent
+import com.girrafeecstud.example_connections_list.navigation.NavigationComponent
 
 class FeatureComponentsProvider {
 

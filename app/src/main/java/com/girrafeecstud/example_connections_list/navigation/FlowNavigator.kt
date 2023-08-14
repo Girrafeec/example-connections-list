@@ -1,13 +1,12 @@
 /* Created by Girrafeec */
 
-package com.girrafeecstud.navigation_impl.navigator
+package com.girrafeecstud.example_connections_list.navigation
 
+import android.util.Log
 import androidx.navigation.NavController
-import com.girrafeecstud.dependency_coordinator_impl.FeatureComponentsProvider
+import com.girrafeecstud.example_connections_list.R
 import com.girrafeecstud.navigation_api.INavigator
 import com.girrafeecstud.navigation_api.setStartDestination
-import com.girrafeecstud.navigation_impl.FlowDestination
-import com.girrafeecstud.navigation_impl.R
 import javax.inject.Inject
 
 class FlowNavigator @Inject constructor(
@@ -47,7 +46,7 @@ class FlowNavigator @Inject constructor(
     private fun setUpComponentForDestination(destination: FlowDestination) {
         when (destination) {
             is FlowDestination.ConnectionsListFlow -> {
-                FeatureComponentsProvider.initConnectionsListFeatureComponent()
+                com.girrafeecstud.example_connections_list.di.FeatureComponentsProvider.initConnectionsListFeatureComponent()
             }
         }
     }

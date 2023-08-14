@@ -3,7 +3,8 @@
 package com.girrafeecstud.example_connections_list.di
 
 import com.girrafeecstud.example_connections_list.app.ConnectionsApp
-import com.girrafeecstud.navigation_impl.navigator.FlowNavigator
+import com.girrafeecstud.example_connections_list.navigation.FlowNavigator
+import com.girrafeecstud.example_connections_list.ui.MainActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -11,7 +12,7 @@ import javax.inject.Singleton
 @Component
 interface AppComponent {
 
-    fun inject(application: ConnectionsApp)
+    fun inject(activity: MainActivity)
 
     fun flowNavigator(): FlowNavigator
 

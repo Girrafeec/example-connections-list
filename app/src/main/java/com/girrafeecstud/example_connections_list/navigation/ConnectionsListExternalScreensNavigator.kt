@@ -1,6 +1,6 @@
 /* Created by Girrafeec */
 
-package com.girrafeecstud.navigation_impl.navigator
+package com.girrafeecstud.example_connections_list.navigation
 
 import com.girrafeecstud.navigation_api.IConnectionsListExternalScreensNavigator
 import javax.inject.Inject

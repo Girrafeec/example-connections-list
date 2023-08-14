@@ -9,7 +9,9 @@ import androidx.navigation.fragment.NavHostFragment
 import com.girrafeecstud.example_connections_list.R
 import com.girrafeecstud.example_connections_list.databinding.ActivityMainBinding
 import com.girrafeecstud.example_connections_list.di.AppComponent
-import com.girrafeecstud.navigation_impl.FlowDestination
+import com.girrafeecstud.example_connections_list.navigation.FlowDestination
+import com.girrafeecstud.example_connections_list.navigation.FlowNavigator
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,10 +19,14 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
+    @Inject
+    lateinit var flowNavigator: FlowNavigator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        AppComponent.get().inject(this)
 
         setUpNavigation()
     }
@@ -31,9 +37,9 @@ class MainActivity : AppCompatActivity() {
 
         navController = navHostFragment.navController
 
-//        AppComponent.get().flowNavigator().setNavController(navController = navController)
-//        AppComponent.get().flowNavigator().setStartDestination(
-//            destination = FlowDestination.ConnectionsListFlow
-//        )
+        flowNavigator.setNavController(navController = navController)
+        flowNavigator.setStartDestination(
+            destination = FlowDestination.ConnectionsListFlow
+        )
     }
 }

@@ -3,6 +3,7 @@
 package com.girrafeecstud.example_connections_list.connections_list.presentation
 
 import com.girrafeecstud.core_ui.presentation.BaseComponentViewModel
+import com.girrafeecstud.example_connections_list.connections_list.di.ConnectionsListFeatureComponentHolder
 import com.girrafeecstud.example_connections_list.connections_list.di.component.ConnectionsListComponent
 import com.girrafeecstud.example_connections_list.connections_list.di.component.ConnectionsListFeatureComponent
 
@@ -18,7 +19,8 @@ class ConnectionsListComponentViewModel : BaseComponentViewModel() {
 
     override fun initComponent() {
         _connectionsListComponent =
-            ConnectionsListFeatureComponent.get()
+            ConnectionsListFeatureComponentHolder
+                .getComponent()
                 .connectionsListComponent()
                 .build()
     }
