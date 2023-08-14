@@ -6,5 +6,7 @@ import com.girrafeecstud.example_connections_list.connections_api.domain.entity.
 data class ConnectionsWithDistanceEngineState(
     val isLoading: Boolean = false,
     val connections: List<ConnectionWithDistance>? = null,
-    val error: CommonError? = null
+    val error: CommonError? = null,
+    val isLocationPermissionNeeded: Boolean = false,
+    val isGpsNeeded: Boolean = false
 )

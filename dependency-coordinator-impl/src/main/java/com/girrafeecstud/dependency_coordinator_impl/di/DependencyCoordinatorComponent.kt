@@ -2,8 +2,11 @@
 
 package com.girrafeecstud.dependency_coordinator_impl.di
 
+import android.content.Context
 import com.girrafeecstud.dependency_coordinator_api.di.DependencyCoordinatorApi
+import com.girrafeecstud.dependency_coordinator_impl.IUnitCreationRequestProvider
 import dagger.Component
+import javax.inject.Singleton
 
 @DependencyCoordinatorScope
 @Component(

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="distance_in_km">%1$s km</string>
+    <string name="distance_in_meters">%1$s m</string>
+    <string translatable="false" name="distance_in_miles">%1$s mi</string>
+    <string translatable="false" name="distance_in_yards">%1$s yd</string>
+    <string name="turn_on_location_title">Turn on location?</string>
+    <string name="turn_on_location_message">To continue, let your device turn on location.</string>
+</resources>

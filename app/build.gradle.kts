@@ -70,7 +70,7 @@ dependencies {
     implementation(Dependencies.Jetpack.Navigation.navigationFragmentKtx)
     implementation(Dependencies.Jetpack.Navigation.navigationUiKtx)
 
-    // ViewModel, LiveData
+    // ViewModel
     implementation(Dependencies.Jetpack.ViewModel.viewModel)
 
     // Coroutines
@@ -82,8 +82,14 @@ dependencies {
     implementation(project(":core-components-impl"))
     implementation(project(":feature-location-api"))
     implementation(project(":feature-location-impl"))
-    implementation(project(":feature-connections-api"))
-    implementation(project(":feature-connections-impl"))
     implementation(project(":feature-location-tracker-api"))
     implementation(project(":feature-location-tracker-impl"))
+    implementation(project(":feature-connections-api"))
+    implementation(project(":feature-connections-impl"))
+    implementation(project(":feature-connections-list"))
+    implementation(project(":dependency-coordinator-api"))
+    implementation(project(":dependency-coordinator-impl"))
+    implementation(project(":navigation-api"))
+    implementation(project(":navigation-impl"))
+
 }

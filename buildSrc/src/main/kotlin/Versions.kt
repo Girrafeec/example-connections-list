@@ -68,4 +68,6 @@ object Versions {
     const val roomVersion = "2.5.1"
 
     const val shafranSharedPreferencesMock = "1.2.4"
+
+    const val orbitMvi = "6.0.0"
 }

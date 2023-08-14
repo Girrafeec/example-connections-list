@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/connections_flow"
+    app:startDestination="@id/connections_with_distance_list_fragment">
+
+    <fragment
+        android:id="@+id/connections_with_distance_list_fragment"
+        android:name="com.girrafeecstud.example_connections_list.connections_list.ui.ConnectionsWithDistanceListFragment"
+        android:label="fragment_connections_with_distance_list"
+        tools:layout="@layout/fragment_connections_with_distance_list" />
+
+</navigation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="permission_required">Требуется разрешение</string>
+    <string name="ok">OK</string>
+    <string name="cancel">ОТМЕНА</string>
+    <string name="grant_permission">Перейти в настройки</string>
+</resources>

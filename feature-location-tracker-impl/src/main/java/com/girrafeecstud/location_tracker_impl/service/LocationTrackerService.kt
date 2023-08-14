@@ -32,7 +32,7 @@ class LocationTrackerService : Service() {
     }
 
     override fun onCreate() {
-        LocationTrackerFeatureComponent.locationTrackerFeatureComponent.inject(this)
+        LocationTrackerFeatureComponent.get().inject(this)
         super.onCreate()
     }
 

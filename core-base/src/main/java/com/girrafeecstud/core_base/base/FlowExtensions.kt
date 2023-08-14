@@ -3,6 +3,7 @@
 package com.girrafeecstud.core_base.base
 
 import com.girrafeecstud.core_base.domain.base.BusinessResult
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flow
@@ -34,5 +35,18 @@ fun <T> Flow<T>.unique(): Flow<T> =
             }
         }
     }
+
+fun CoroutineScope.launchPeriodically(
+    repeatMillis: Long,
+    isEnabled: () -> Boolean,
+    action: () -> Unit
+) : Job {
+    return launch {
+        while (isEnabled()) {
+            action()
+            delay(repeatMillis)
+        }
+    }
+}
 
 private object NoValue

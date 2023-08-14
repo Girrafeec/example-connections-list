@@ -23,7 +23,7 @@ class ConnectionsWithDistanceEngine @Inject constructor(
 
     override fun startFetchingConnectionsWithDistanceToChosenConnection(chosenConnection: Connection) {
         sendCommandToService(
-            mode = ConnectionsWithDistanceEngineMode.DEFAULT,
+            mode = ConnectionsWithDistanceEngineMode.DISTANCE_TO_CHOSEN_CONNECTION,
             chosenConnection = chosenConnection
         )
     }

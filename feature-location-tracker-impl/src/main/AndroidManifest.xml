@@ -17,16 +17,6 @@
             android:name="com.girrafeecstud.location_tracker_impl.service.LocationTrackerService"
             android:foregroundServiceType="location"/>
 
-        <receiver
-            android:name="com.girrafeecstud.location_tracker_impl.engine.LocationTrackerReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action
-                    android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action
-                    android:name="android.location.PROVIDERS_CHANGED"/>
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

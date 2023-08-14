@@ -1,0 +1,4 @@
+<resources>
+    <string translatable="false" name="app_name">feature-connections-list</string>
+    <string name="enable_location_for_connections">Location is required to get the distance to your connections.</string>
+</resources>

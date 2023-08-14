@@ -2,8 +2,8 @@
 
 package com.girrafeecstud.dependency_coordinator_api.di
 
-import com.girrafeecstud.dependency_coordinator_api.IComponentCreationRequestHandler
+import com.girrafeecstud.dependency_coordinator_api.IUnitCreationRequestHandler
 
 interface DependencyCoordinatorApi {
-    fun getComponentCreationRequestHandler(): IComponentCreationRequestHandler
+    fun getUnitCreationRequestHandler(): IUnitCreationRequestHandler
 }

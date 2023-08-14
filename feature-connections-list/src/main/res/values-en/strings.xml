@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enable_location_for_connections">Location is required to get the distance to your connections.</string>
+</resources>

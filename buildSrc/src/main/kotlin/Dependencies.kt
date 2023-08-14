@@ -44,6 +44,10 @@ class Dependencies {
 
     object AndroidX {
 
+        object TestCore {
+            const val testCore = "androidx.test:core:1.5.0"
+        }
+
         object Core {
             const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtxVersion}"
         }
@@ -129,5 +133,13 @@ class Dependencies {
 
     object Other {
         const val threeTenAbp = "com.jakewharton.threetenabp:threetenabp:1.3.1"
+    }
+
+    object OrbitMVI {
+
+        const val orbitMviCore = "org.orbit-mvi:orbit-core:${Versions.orbitMvi}"
+
+        const val orbitMviViewModel = "org.orbit-mvi:orbit-viewmodel:${Versions.orbitMvi}"
+
     }
 }

@@ -2,6 +2,7 @@
 
 package com.girrafeecstud.example_connections_list.connections_impl.data
 
+import com.girrafeecstud.core_base.base.removeAt
 import com.girrafeecstud.core_base.domain.base.BusinessResult
 import com.girrafeecstud.example_connections_list.connections_api.data.IConnectionsDataSource
 import com.girrafeecstud.example_connections_list.connections_api.domain.repository.IConnectionsWithDistanceRepository
@@ -119,7 +120,16 @@ class ConnectionsWithDistanceRepository @Inject constructor(
             .map { connectionsResult ->
                 when (connectionsResult) {
                     is BusinessResult.Success -> {
-                        val connections = connectionsResult.data!!
+                        var connections = connectionsResult.data!!
+
+                        // Chosen connection  must not be emmited
+                        val indexToRemove = connections.indexOfFirst {
+                            it.connectionId == chosenConnection.connectionId
+                        }
+                        if (indexToRemove != -1) {
+                            connections = connections.removeAt(indexToRemove)
+                        }
+
                         val connectionsWithDistance = connections.map { connection ->
                             val distance = distanceCalculator
                             .calculateDistanceBetweenLocationsInMeters(

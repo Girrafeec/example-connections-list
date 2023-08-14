@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment<UiState>: Fragment() {
+abstract class BaseFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -18,6 +18,4 @@ abstract class BaseFragment<UiState>: Fragment() {
     protected open fun registerObservers() {}
 
     protected open fun setListeners() {}
-
-    protected open fun setState(state: UiState) {}
 }

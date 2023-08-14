@@ -53,6 +53,9 @@ dependencies {
     implementation(project(":feature-location-impl"))
     implementation(project(":feature-connections-api"))
     implementation(project(":feature-connections-impl"))
+    implementation(project(":feature-connections-list"))
     implementation(project(":feature-location-tracker-api"))
     implementation(project(":feature-location-tracker-impl"))
+    implementation(project(":navigation-api"))
+    implementation(project(":navigation-impl"))
 }

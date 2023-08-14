@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="distance_in_km">%1$s км</string>
+    <string name="distance_in_meters">%1$s м</string>
+    <string name="turn_on_location_title">Включить геолокацию?</string>
+    <string name="turn_on_location_message">Чтобы улучшить работу приложения включите на устройстве геолокацию.</string>
+</resources>

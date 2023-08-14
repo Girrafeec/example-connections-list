@@ -7,6 +7,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Connection(
+    val connectionId: String,
     val firstName: String,
     val lastName: String,
     val profileImageUrl: String,

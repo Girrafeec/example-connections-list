@@ -36,6 +36,13 @@ android {
 
 dependencies {
 
+    // Unit-tests
+    testImplementation(Dependencies.jUnit.jUnit)
+    testImplementation(Dependencies.AndroidX.TestCore.testCore)
+    testImplementation(Dependencies.Coroutines.coroutinesTest)
+    testImplementation(Dependencies.Mockito.mockitoKotlin)
+    testImplementation(Dependencies.Mockito.mockitoInline)
+
     // Dagger
     implementation(Dependencies.Dagger.dagger)
     kapt(Dependencies.Dagger.daggerCompiler)
