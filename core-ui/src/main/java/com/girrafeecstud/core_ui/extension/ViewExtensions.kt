@@ -7,7 +7,21 @@ import android.widget.ImageView
 import com.girrafeecstud.core_ui.R
 import com.squareup.picasso.Picasso
 
-fun ImageView.loadAndSetImage(url: String) {
+//fun ImageView.loadAndSetImage(
+//    url: String,
+//    loadingResourceId: Int,
+//    errorResourceId: Int,
+//) {
+//    Picasso.get()
+//        .load(url)
+//        .placeholder(loadingResourceId)
+//        .error(errorResourceId)
+//        .into(this)
+//}
+
+fun ImageView.loadAndSetImage(
+    url: String
+) {
     Picasso.get()
         .load(url)
         .into(this)

@@ -8,6 +8,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
+    modules = [CoreComponentsModule::class],
     dependencies = [ICoreComponentsDependencies::class]
 )
 interface CoreComponentsComponent : CoreComponentsApi {

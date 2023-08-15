@@ -9,6 +9,7 @@ import android.location.LocationManager
 import android.os.Looper
 import com.girrafeecstud.core_base.base.GpsIsNotEnabledException
 import com.girrafeecstud.core_base.base.LocationPermissionsNotGrantedException
+import com.girrafeecstud.core_components_api.DispatcherProvider
 import com.girrafeecstud.location_tracker_api.data.ILocationTrackerClient
 import com.girrafeecstud.location_tracker_api.utils.TrackerPermissionsUtility
 import com.girrafeecstud.location_tracker_impl.utils.TrackerUtility
@@ -25,7 +26,8 @@ import javax.inject.Inject
 
 class DefaultLocationTrackerClient @Inject constructor(
     private val context: Context,
-    private val client: FusedLocationProviderClient
+    private val client: FusedLocationProviderClient,
+    private val dispatchers: DispatcherProvider
 ) : ILocationTrackerClient {
 
     @SuppressLint("MissingPermission")
@@ -70,7 +72,7 @@ class DefaultLocationTrackerClient @Inject constructor(
         awaitClose {
             client.removeLocationUpdates(locationCallback)
         }
-    }.flowOn(Dispatchers.IO) // TODO create app dispatchers and make di with it
+    }.flowOn(dispatchers.io)
 
     override fun getLocationUpdates(): Flow<Location> = _locationUpdates
 

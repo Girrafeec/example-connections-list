@@ -2,7 +2,6 @@
 
 package com.girrafeecstud.location_api
 
-import com.girrafeecstud.location_api.data.getFormattedDistanceStringTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -11,7 +10,7 @@ import org.junit.runners.Parameterized
 @RunWith(Parameterized::class)
 class LocationUnitTest(
     private val originalDistance: Double,
-    private val expectedFormattedDistanceString: String
+    private val expectedFormattedDistanceWithUnit: Pair<String, DistanceUnit>
 ) {
 
     companion object {
@@ -19,22 +18,28 @@ class LocationUnitTest(
         @JvmStatic
         @Parameterized.Parameters
         fun data() = listOf(
-            arrayOf(2456.0, "2.5 km"),
-            arrayOf(934.12, "934 m"),
-            arrayOf(4224.48, "4.2 km"),
-            arrayOf(999.99, "999 m"),
-            arrayOf(1000.0, "1 km"),
-            arrayOf(1.0, "1 m"),
-            arrayOf(0.0, "0 m"),
-            arrayOf(1500.0, "1.5 km")
+            arrayOf(2456.0, Pair("2.5", DistanceUnit.KILOMETERS)),
+            arrayOf(934.12, Pair("934", DistanceUnit.METERS)),
+            arrayOf(4224.48, Pair("4.2", DistanceUnit.KILOMETERS)),
+            arrayOf(999.49, Pair("999", DistanceUnit.METERS)),
+            arrayOf(999.65, Pair("1", DistanceUnit.KILOMETERS)),
+            arrayOf(999.99, Pair("1", DistanceUnit.KILOMETERS)),
+            arrayOf(99.99, Pair("100", DistanceUnit.METERS)),
+            arrayOf(9.93, Pair("10", DistanceUnit.METERS)),
+            arrayOf(9.4, Pair("9", DistanceUnit.METERS)),
+            arrayOf(9.6, Pair("10", DistanceUnit.METERS)),
+            arrayOf(1000.0, Pair("1", DistanceUnit.KILOMETERS)),
+            arrayOf(1.0, Pair("1", DistanceUnit.METERS)),
+            arrayOf(0.0, Pair("0", DistanceUnit.METERS)),
+            arrayOf(1500.0, Pair("1.5", DistanceUnit.KILOMETERS))
         )
 
     }
 
     @Test
     fun `Distance formatting works as expected`() {
-        val actualFormattedDistanceString = originalDistance.getFormattedDistanceStringTest()
-        assertEquals(expectedFormattedDistanceString, actualFormattedDistanceString)
+        val actualFormattedDistanceString = originalDistance.getFormattedDistanceStringWithUnitFromDistanceInMeters()
+        assertEquals(expectedFormattedDistanceWithUnit, actualFormattedDistanceString)
     }
 
 }

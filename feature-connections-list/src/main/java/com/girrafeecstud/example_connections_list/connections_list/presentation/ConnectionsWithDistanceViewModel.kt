@@ -2,10 +2,8 @@
 
 package com.girrafeecstud.example_connections_list.connections_list.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.girrafeecstud.core_ui.presentation.BaseViewModel
 import com.girrafeecstud.example_connections_list.connections_api.domain.entity.Connection
 import com.girrafeecstud.example_connections_list.connections_api.engine.ConnectionsWithDistanceEngineMode
 import com.girrafeecstud.example_connections_list.connections_api.engine.IConnectionsWithDistanceEngine

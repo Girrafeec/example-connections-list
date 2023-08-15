@@ -40,6 +40,9 @@ dependencies {
     // Core
     implementation(Dependencies.AndroidX.Core.coreKtx)
 
+    // Coroutines
+    implementation(Dependencies.Coroutines.coroutines)
+
     // Dagger
     implementation(Dependencies.Dagger.dagger)
     kapt(Dependencies.Dagger.daggerCompiler)

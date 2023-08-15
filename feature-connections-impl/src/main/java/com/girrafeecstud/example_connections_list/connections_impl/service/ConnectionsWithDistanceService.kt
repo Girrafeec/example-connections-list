@@ -13,6 +13,7 @@ import com.girrafeecstud.core_base.base.ExceptionType
 import com.girrafeecstud.core_base.base.launchPeriodically
 import com.girrafeecstud.core_base.base.mapToCommonError
 import com.girrafeecstud.core_base.domain.base.handleResult
+import com.girrafeecstud.core_components_api.DispatcherProvider
 import com.girrafeecstud.example_connections_list.connections_api.domain.entity.Connection
 import com.girrafeecstud.example_connections_list.connections_api.domain.usecase.IGetConnectionsWithDistanceToChosenConnectionUseCase
 import com.girrafeecstud.example_connections_list.connections_api.domain.usecase.IGetConnectionsWithDistanceToUserUseCase
@@ -37,8 +38,6 @@ class ConnectionsWithDistanceService : Service() {
 
     private val binder = ConnectionsWithDistanceServiceBinder()
 
-    private var serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-
     private var isConnectionsRequestEnabled = false
 
     @Inject
@@ -47,14 +46,22 @@ class ConnectionsWithDistanceService : Service() {
     @Inject
     lateinit var getConnectionsWithDistanceToUserUseCase: IGetConnectionsWithDistanceToUserUseCase
 
+    @Inject
+    lateinit var dispatchers: DispatcherProvider
+
+    private var _serviceScope: CoroutineScope? = null
+
+    private val serviceScope get() = _serviceScope!!
+
     override fun onCreate() {
         super.onCreate()
         ConnectionsFeatureComponentHolder.getComponent().inject(service = this)
+        _serviceScope = CoroutineScope(SupervisorJob() + dispatchers.io)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        serviceScope.cancel()
+        _serviceScope?.cancel()
         ConnectionsFeatureComponentHolder.reset()
     }
 
@@ -71,7 +78,6 @@ class ConnectionsWithDistanceService : Service() {
                 lIntent.getStringExtra(ConnectionsFeatureUtils.CONNECTIONS_WITH_DISTANCE_SERVICE_MODE)
 
             connectionsWithDistanceEngineMode?.let { mode ->
-                Log.i("tag", "mode $mode")
                 if (currentMode != mode) {
                     currentMode = mode
                     stopRequests()
@@ -79,8 +85,7 @@ class ConnectionsWithDistanceService : Service() {
                     _state.update {
                         it.copy(isLoading = true)
                     }
-                    // TODO fix!!!
-                    serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+                    _serviceScope = CoroutineScope(SupervisorJob() + dispatchers.io)
                     serviceScope.launchPeriodically(
                         repeatMillis = ConnectionsFeatureUtils.CONNECTIONS_REQUEST_TIMEOUT,
                         isEnabled = { isConnectionsRequestEnabled },
@@ -123,7 +128,6 @@ class ConnectionsWithDistanceService : Service() {
         serviceScope.launch {
             getConnectionsWithDistanceToUserUseCase()
                 .onEach { result ->
-                    Log.i("tag", "result to user: $result")
                     _state.update {
                         it.copy(isLoading = false)
                     }
@@ -155,7 +159,6 @@ class ConnectionsWithDistanceService : Service() {
         serviceScope.launch {
             getConnectionsWithDistanceToChosenConnectionUseCase(chosenConnection = chosenConnection)
                 .onEach { result ->
-                    Log.i("tag", "result to chosen: $result")
                     _state.update {
                         it.copy(isLoading = false)
                     }

@@ -11,9 +11,9 @@ import kotlin.math.*
 
 class DistanceCalculator @Inject constructor() : IDistanceCalculator {
 
-    // Method calculates distance between two coordinates according to Haversine formula
-    // and returns result rounded to 1 sign after integer part.
-    // Haversine formula can result in an error of up to 0.5%.
+    /* Method calculates distance between two coordinates according to Haversine formula
+    ** and returns result rounded to 1 sign after integer part.
+    ** Haversine formula can result in an error of up to 0.5%. */
     override fun calculateDistanceBetweenLocationsInMeters(
         firstLocation: Location,
         secondLocation: Location

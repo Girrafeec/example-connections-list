@@ -26,7 +26,10 @@ class PermissionDialog private constructor(
                 false -> R.string.ok
             }
 
-        val builder = AlertDialog.Builder(context)
+        val builder = AlertDialog.Builder(
+            context,
+            R.style.AlertDialogTheme
+        )
             .setTitle(dialogTitle)
             .setMessage(dialogMessage)
             .setPositiveButton(dialogPositiveButtonText) { dialog, _ ->

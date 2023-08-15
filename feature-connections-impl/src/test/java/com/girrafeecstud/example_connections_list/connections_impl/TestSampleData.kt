@@ -12,24 +12,28 @@ object TestSampleData {
 
     val connections = listOf(
         Connection(
+            connectionId = "e16b668a-3826-11ee-be56-0242ac120002",
             firstName = "Александр",
             lastName = "Соколов",
             profileImageUrl = "https://images.unsplash.com/photo-1588641657136-a2b97ca9512a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             location = Location(latitude = 59.914541, longitude = 30.317981)
         ),
         Connection(
+            connectionId = "e16b6982-3826-11ee-be56-0242ac120002",
             firstName = "Алина",
             lastName = "Баева",
             profileImageUrl = "https://images.unsplash.com/photo-1556964218-61ae5bf37ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             location = Location(latitude = 59.926773, longitude = 30.344421)
         ),
         Connection(
+            connectionId = "e16b6aea-3826-11ee-be56-0242ac120002",
             firstName = "Никита",
             lastName = "Новиков",
             profileImageUrl = "https://images.unsplash.com/photo-1623629267708-d79c838741ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             location = Location(latitude = 59.912881, longitude = 30.349417)
         ),
         Connection(
+            connectionId = "e16b6c5c-3826-11ee-be56-0242ac120002",
             firstName = "Евгений",
             lastName = "Соколов",
             profileImageUrl = "https://plus.unsplash.com/premium_photo-1661499572301-135097f24bf0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -47,6 +51,7 @@ object TestSampleData {
     val connectionsWithDistance = listOf(
         ConnectionWithDistance(
             connection = Connection(
+                connectionId = "e16b668a-3826-11ee-be56-0242ac120002",
                 firstName = "Александр",
                 lastName = "Соколов",
                 profileImageUrl = "https://images.unsplash.com/photo-1588641657136-a2b97ca9512a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -56,6 +61,7 @@ object TestSampleData {
         ),
         ConnectionWithDistance(
             connection = Connection(
+                connectionId = "e16b6982-3826-11ee-be56-0242ac120002",
                 firstName = "Алина",
                 lastName = "Баева",
                 profileImageUrl = "https://images.unsplash.com/photo-1556964218-61ae5bf37ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -65,6 +71,7 @@ object TestSampleData {
         ),
         ConnectionWithDistance(
             connection = Connection(
+                connectionId = "e16b6aea-3826-11ee-be56-0242ac120002",
                 firstName = "Никита",
                 lastName = "Новиков",
                 profileImageUrl = "https://images.unsplash.com/photo-1623629267708-d79c838741ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -74,6 +81,7 @@ object TestSampleData {
         ),
         ConnectionWithDistance(
             connection = Connection(
+                connectionId = "e16b6c5c-3826-11ee-be56-0242ac120002",
                 firstName = "Евгений",
                 lastName = "Соколов",
                 profileImageUrl = "https://plus.unsplash.com/premium_photo-1661499572301-135097f24bf0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -87,6 +95,7 @@ object TestSampleData {
         listOf(
             ConnectionWithDistance(
                 connection = Connection(
+                    connectionId = "e16b668a-3826-11ee-be56-0242ac120002",
                     firstName = "Александр",
                     lastName = "Соколов",
                     profileImageUrl = "https://images.unsplash.com/photo-1588641657136-a2b97ca9512a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -96,6 +105,7 @@ object TestSampleData {
             ),
             ConnectionWithDistance(
                 connection = Connection(
+                    connectionId = "e16b6982-3826-11ee-be56-0242ac120002",
                     firstName = "Алина",
                     lastName = "Баева",
                     profileImageUrl = "https://images.unsplash.com/photo-1556964218-61ae5bf37ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -105,6 +115,7 @@ object TestSampleData {
             ),
             ConnectionWithDistance(
                 connection = Connection(
+                    connectionId = "e16b6aea-3826-11ee-be56-0242ac120002",
                     firstName = "Никита",
                     lastName = "Новиков",
                     profileImageUrl = "https://images.unsplash.com/photo-1623629267708-d79c838741ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -114,6 +125,7 @@ object TestSampleData {
             ),
             ConnectionWithDistance(
                 connection = Connection(
+                    connectionId = "e16b6c5c-3826-11ee-be56-0242ac120002",
                     firstName = "Евгений",
                     lastName = "Соколов",
                     profileImageUrl = "https://plus.unsplash.com/premium_photo-1661499572301-135097f24bf0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",

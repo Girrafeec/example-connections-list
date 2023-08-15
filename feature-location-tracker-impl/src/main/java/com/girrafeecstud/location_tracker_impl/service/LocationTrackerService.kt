@@ -7,6 +7,8 @@ import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
 import com.girrafeecstud.core_base.domain.base.BusinessResult
+import com.girrafeecstud.core_base.domain.base.handleResult
+import com.girrafeecstud.core_components_api.DispatcherProvider
 import com.girrafeecstud.location_tracker_impl.di.LocationTrackerFeatureComponent
 import com.girrafeecstud.location_tracker_api.domain.IGetLastKnownLocationUseCase
 import com.girrafeecstud.location_tracker_impl.di.LocationTrackerFeatureComponentHolder
@@ -18,12 +20,17 @@ import javax.inject.Inject
 
 class LocationTrackerService : Service() {
 
-    private val locationTrackerServiceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-
     private val binder = LocationTrackerBinder()
 
     @Inject
     internal lateinit var getLastKnownLocationUseCase: IGetLastKnownLocationUseCase
+
+    @Inject
+    internal lateinit var dispatchers: DispatcherProvider
+
+    private var _locationTrackerServiceScope: CoroutineScope? = null
+
+    private val locationTrackerServiceScope get() = _locationTrackerServiceScope!!
 
     companion object {
         private var _state: MutableStateFlow<LocationTrackerState> = MutableStateFlow(
@@ -35,6 +42,7 @@ class LocationTrackerService : Service() {
     override fun onCreate() {
         LocationTrackerFeatureComponentHolder.getComponent().inject(this)
         super.onCreate()
+        _locationTrackerServiceScope = CoroutineScope(kotlinx.coroutines.SupervisorJob() + dispatchers.io)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -56,15 +64,11 @@ class LocationTrackerService : Service() {
     private fun startLocationTracker() {
         getLastKnownLocationUseCase()
             .onEach { result ->
-                when (result) {
-                    is BusinessResult.Success -> {
-                        _state.update { it.copy(location = result.data) }
+                result.handleResult(
+                    onSuccess = { location ->
+                        _state.update { it.copy(location = location) }
                     }
-                    is BusinessResult.Exception-> {
-                    }
-                    is BusinessResult.Error -> {
-                    }
-                }
+                )
             }
             .launchIn(locationTrackerServiceScope)
     }

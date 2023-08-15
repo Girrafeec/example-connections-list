@@ -7,6 +7,7 @@ import com.girrafeecstud.core_base.base.ExceptionType
 import com.girrafeecstud.core_base.base.GpsIsNotEnabledException
 import com.girrafeecstud.core_base.base.LocationPermissionsNotGrantedException
 import com.girrafeecstud.core_base.domain.base.BusinessResult
+import com.girrafeecstud.core_components_api.DispatcherProvider
 import com.girrafeecstud.location_api.domain.Location
 import com.girrafeecstud.location_tracker_api.data.ILocationTrackerDataSource
 import com.girrafeecstud.location_tracker_impl.di.annotation.DefaultLocationTrackerClientQualifier
@@ -19,12 +20,13 @@ import javax.inject.Inject
 
 class DefaultLocationTrackerDataSource @Inject constructor(
     @DefaultLocationTrackerClientQualifier
-    private val client: ILocationTrackerClient
+    private val client: ILocationTrackerClient,
+    private val dispatchers: DispatcherProvider
 ) : ILocationTrackerDataSource {
 
         override fun getLastKnownLocation(): Flow<BusinessResult<Location>> =
             channelFlow {
-                val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+                val scope = CoroutineScope(SupervisorJob() + dispatchers.io)
                 client.getLocationUpdates()
                     .catch { exception ->
                         when (exception) {

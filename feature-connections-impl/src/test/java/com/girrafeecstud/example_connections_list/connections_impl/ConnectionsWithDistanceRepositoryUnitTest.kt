@@ -3,6 +3,8 @@
 package com.girrafeecstud.example_connections_list.connections_impl
 
 import com.girrafeecstud.core_base.domain.base.BusinessResult
+import com.girrafeecstud.core_base.domain.base.handleResult
+import com.girrafeecstud.core_components_api.TestDispatchers
 import com.girrafeecstud.example_connections_list.connections_api.data.IConnectionsDataSource
 import com.girrafeecstud.example_connections_list.connections_api.domain.repository.IConnectionsWithDistanceRepository
 import com.girrafeecstud.example_connections_list.connections_api.domain.entity.ConnectionWithDistance
@@ -11,6 +13,8 @@ import com.girrafeecstud.location_api.data.IDistanceCalculator
 import com.girrafeecstud.location_tracker_api.data.ILocationTrackerDataSource
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -34,10 +38,16 @@ class ConnectionsWithDistanceRepositoryUnitTest {
         locationTrackerDataSource = mock()
         distanceCalculator = mock()
 
+
+        val testCoroutineDispatcher = UnconfinedTestDispatcher()
+
+        val testDispatchers = TestDispatchers(testDispatcher = testCoroutineDispatcher)
+
         connectionsWithDistanceRepository = ConnectionsWithDistanceRepository(
             connectionsDataSource = connectionsDataSource,
             locationTrackerDataSource = locationTrackerDataSource,
-            distanceCalculator = distanceCalculator
+            distanceCalculator = distanceCalculator,
+            dispatchers = testDispatchers
         )
     }
 
@@ -75,13 +85,11 @@ class ConnectionsWithDistanceRepositoryUnitTest {
 
             connectionsWithDistanceRepository.getConnectionsWithDistanceToUser()
                 .collect { result ->
-                    when (result) {
-                        is BusinessResult.Error -> {}
-                        is BusinessResult.Exception -> {}
-                        is BusinessResult.Success -> {
-                            actualResult = result.data
+                    result.handleResult(
+                        onSuccess = { connectionsWithDistance ->
+                            actualResult = connectionsWithDistance
                         }
-                    }
+                    )
                 }
 
             assertEquals(expectedResult, actualResult)
@@ -116,15 +124,14 @@ class ConnectionsWithDistanceRepositoryUnitTest {
 
             connectionsWithDistanceRepository.getConnectionsWithDistanceToUser()
                 .collect { result ->
-                    when (result) {
-                        is BusinessResult.Error -> {}
-                        is BusinessResult.Exception -> {
-                            actualExceptionResult = result
+                    result.handleResult(
+                        onSuccess = { connectionsWithDistance ->
+                            actualConnectionsResult = connectionsWithDistance
+                        },
+                        onException = { exception ->
+                            actualExceptionResult = BusinessResult.Exception(exception = exception)
                         }
-                        is BusinessResult.Success -> {
-                            actualConnectionsResult = result.data
-                        }
-                    }
+                    )
                 }
 
             assertEquals(expectedConnectionsResult, actualConnectionsResult)
@@ -132,7 +139,7 @@ class ConnectionsWithDistanceRepositoryUnitTest {
         }
 
     @Test
-    fun `EXPECT connections list without distance and then LocationPermissiontNotGrantedException`() =
+    fun `EXPECT connections list without distance and then LocationPermissionNotGrantedException`() =
         runBlocking {
 
             val expectedConnectionsResult = TestSampleData.connectionsWithEmptyDistance
@@ -160,15 +167,14 @@ class ConnectionsWithDistanceRepositoryUnitTest {
 
             connectionsWithDistanceRepository.getConnectionsWithDistanceToUser()
                 .collect { result ->
-                    when (result) {
-                        is BusinessResult.Error -> {}
-                        is BusinessResult.Exception -> {
-                            actualExceptionResult = result
+                    result.handleResult(
+                        onSuccess = { connectionsWithDistance ->
+                            actualConnectionsResult = connectionsWithDistance
+                        },
+                        onException = { exception ->
+                            actualExceptionResult = BusinessResult.Exception(exception = exception)
                         }
-                        is BusinessResult.Success -> {
-                            actualConnectionsResult = result.data
-                        }
-                    }
+                    )
                 }
 
             assertEquals(expectedConnectionsResult, actualConnectionsResult)

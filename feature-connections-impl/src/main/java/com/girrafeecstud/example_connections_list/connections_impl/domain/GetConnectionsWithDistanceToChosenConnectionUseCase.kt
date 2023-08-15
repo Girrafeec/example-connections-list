@@ -3,6 +3,7 @@
 package com.girrafeecstud.example_connections_list.connections_impl.domain
 
 import com.girrafeecstud.core_base.domain.base.BusinessResult
+import com.girrafeecstud.core_components_api.DispatcherProvider
 import com.girrafeecstud.example_connections_list.connections_api.domain.repository.IConnectionsWithDistanceRepository
 import com.girrafeecstud.example_connections_list.connections_api.domain.entity.Connection
 import com.girrafeecstud.example_connections_list.connections_api.domain.entity.ConnectionWithDistance
@@ -13,11 +14,12 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class GetConnectionsWithDistanceToChosenConnectionUseCase @Inject constructor(
-    private val repository: IConnectionsWithDistanceRepository
+    private val repository: IConnectionsWithDistanceRepository,
+    private val dispatchers: DispatcherProvider
 ) : IGetConnectionsWithDistanceToChosenConnectionUseCase {
 
     override fun invoke(chosenConnection: Connection): Flow<BusinessResult<List<ConnectionWithDistance>>> =
         repository.getConnectionsWithDistanceToChosenConnection(chosenConnection = chosenConnection)
-            .flowOn(Dispatchers.IO)
+            .flowOn(dispatchers.io)
 
 }

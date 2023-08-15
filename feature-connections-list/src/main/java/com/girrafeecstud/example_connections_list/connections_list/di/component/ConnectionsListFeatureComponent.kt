@@ -2,6 +2,7 @@
 
 package com.girrafeecstud.example_connections_list.connections_list.di.component
 
+import com.girrafeecstud.core_components_api.di.CoreComponentsApi
 import com.girrafeecstud.example_connections_list.connections_api.di.ConnectionsFeatureApi
 import com.girrafeecstud.example_connections_list.connections_list.di.ConnectionsListFeatureApi
 import com.girrafeecstud.example_connections_list.connections_list.di.ConnectionsListFeatureDependencies
@@ -45,6 +46,7 @@ interface ConnectionsListFeatureComponent : ConnectionsListFeatureApi {
     @ConnectionsListFeatureScope
     @Component(
         dependencies = [
+            CoreComponentsApi::class,
             ConnectionsFeatureApi::class,
             NavigationApi::class
         ]

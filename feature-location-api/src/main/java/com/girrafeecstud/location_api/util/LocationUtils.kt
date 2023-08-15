@@ -20,8 +20,8 @@ object LocationUtils {
 
     private const val longitudeMax = 180.0
 
-    // Method returns random location generated within input latitude and longitude parameters.
-    // Result is rounded to 6 decimal signs because it gives accuracy of 0.111 m.
+    /* Method returns random location generated within input latitude and longitude parameters.
+    ** Result is rounded to 6 decimal signs because it gives accuracy of 0.111 m. */
     fun generateRandomLocation(
         newLocationLatitudeMin: Double = latitudeMin,
         newLocationLatitudeMax: Double = latitudeMax,

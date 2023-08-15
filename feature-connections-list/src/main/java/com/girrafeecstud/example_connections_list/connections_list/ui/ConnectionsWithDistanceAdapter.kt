@@ -28,7 +28,6 @@ class ConnectionsWithDistanceAdapter @Inject constructor(
             parent,
             false
         )
-        // TODO inject app context or put parent.context?
         return ConnectionWithDistanceViewHolder(binding = binding, context =  parent.context)
     }
 

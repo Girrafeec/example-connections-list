@@ -3,16 +3,18 @@
 package com.girrafeecstud.example_connections_list.connections_impl.data
 
 import com.girrafeecstud.core_base.domain.base.BusinessResult
+import com.girrafeecstud.core_components_api.DispatcherProvider
 import com.girrafeecstud.example_connections_list.connections_api.data.IConnectionsDataSource
 import com.girrafeecstud.example_connections_list.connections_api.domain.entity.Connection
 import com.girrafeecstud.location_api.domain.Location
 import com.girrafeecstud.location_api.util.LocationUtils
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class ConnectionsLocalDataSource @Inject constructor(
-
+    private val dispatchers: DispatcherProvider
 ) : IConnectionsDataSource {
 
     companion object {
@@ -122,5 +124,5 @@ class ConnectionsLocalDataSource @Inject constructor(
     override fun getConnections(): Flow<BusinessResult<List<Connection>>> =
         flow {
             emit(BusinessResult.Success(data = getConnectionsWithRandomLocation()))
-        }
+        }.flowOn(dispatchers.io)
 }

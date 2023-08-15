@@ -4,21 +4,21 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/connection_with_distance_item"
-    android:background="@drawable/white_regular_rectangle">
+    android:background="@drawable/white_rectangle_selector">
 
     <androidx.cardview.widget.CardView
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:id="@+id/connection_image_container"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="50dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
         android:layout_marginStart="10dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/connection_profile_image"
@@ -26,40 +26,52 @@
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/connection_name"
         android:gravity="start"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="17sp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/connection_image_container"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"/>
+        android:layout_marginTop="17dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"/>
 
-    <!--TODO make src smaller-->
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/distance_icon"
         android:src="@drawable/ic_distance"
         app:layout_constraintTop_toBottomOf="@id/connection_name"
         app:layout_constraintStart_toEndOf="@id/connection_image_container"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="15dp"/>
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/connection_distance"
         android:gravity="start"
+        android:fontFamily="@font/montserrat"
+        android:textSize="14sp"
+        android:textColor="@color/regular_gray"
         app:layout_constraintTop_toBottomOf="@id/connection_name"
         app:layout_constraintBottom_toBottomOf="@id/distance_icon"
         app:layout_constraintStart_toEndOf="@id/distance_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"/>
+        android:layout_marginEnd="15dp"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_item_underline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

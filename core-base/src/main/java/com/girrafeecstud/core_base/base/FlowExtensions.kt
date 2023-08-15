@@ -7,6 +7,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 
 //fun <T> Flow<BusinessResult<T>>.handleSuccessResultWithNotNullData(): Flow<T> =
 //    flow {
@@ -36,6 +37,8 @@ fun <T> Flow<T>.unique(): Flow<T> =
         }
     }
 
+private object NoValue
+
 fun CoroutineScope.launchPeriodically(
     repeatMillis: Long,
     isEnabled: () -> Boolean,
@@ -49,4 +52,18 @@ fun CoroutineScope.launchPeriodically(
     }
 }
 
-private object NoValue
+inline fun <T, R> Flow<BusinessResult<T>>.mapSuccess(
+    crossinline transform: (T) -> R
+): Flow<BusinessResult<R>> =
+    map { result ->
+        when (result) {
+            is BusinessResult.Success -> {
+                val transformedData = result.data?.let {
+                    transform(it)
+                }
+                BusinessResult.Success(data = transformedData)
+            }
+            is BusinessResult.Error -> result
+            is BusinessResult.Exception -> result
+        }
+    }

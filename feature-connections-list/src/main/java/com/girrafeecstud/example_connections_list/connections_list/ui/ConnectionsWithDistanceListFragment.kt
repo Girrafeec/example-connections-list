@@ -17,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.girrafeecstud.core_base.base.cyrillicToLatin
 import com.girrafeecstud.core_components_api.MainViewModelFactory
 import com.girrafeecstud.core_components_api.openAppSettings
 import com.girrafeecstud.core_components_api.openGPSSettings
@@ -36,6 +37,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 class ConnectionsWithDistanceListFragment :
@@ -90,6 +92,8 @@ class ConnectionsWithDistanceListFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.actionBar.actionBarTitle.text =
+            requireContext().resources.getString(com.girrafeecstud.example_connections_list.connections_list.R.string.connections_title)
         initRecView()
     }
 
@@ -112,6 +116,9 @@ class ConnectionsWithDistanceListFragment :
     }
 
     override fun setListeners() {
+        binding.actionBar.backButton.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
         binding.pinnedConnectionContainer.setOnClickListener {
             connectionsWithDistanceViewModel.unpinConnection()
         }
@@ -148,12 +155,21 @@ class ConnectionsWithDistanceListFragment :
                 true -> {
                     state.pinnedConnection?.let { connection ->
                         binding.pinnedConnectionContainer.showView()
-                        binding.connectionProfileImage.loadAndSetImage(connection.profileImageUrl)
-                        binding.connectionName.text = requireContext().resources.getString(
+                        binding.connectionProfileImage.loadAndSetImage(
+                            url = connection.profileImageUrl,
+                        )
+
+                        val connectionName = requireContext().resources.getString(
                             R.string.user_first_last_name,
                             connection.firstName,
                             connection.lastName
                         )
+
+                        binding.connectionName.text = if (Locale.getDefault().language != "ru")
+                            connectionName.cyrillicToLatin()
+                        else
+                            connectionName
+
                         connectionsAdapter.removePinnedConnection(connectionId = connection.connectionId)
                         connectionsWithDistanceViewModel.getConnectionsWithDistanceToChosenConnection(
                             chosenConnection = connection

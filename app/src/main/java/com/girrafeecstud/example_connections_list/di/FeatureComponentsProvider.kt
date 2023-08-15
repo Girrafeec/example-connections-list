@@ -47,6 +47,7 @@ class FeatureComponentsProvider {
             ConnectionsListFeatureComponentHolder.init(
                 dependencies = DaggerConnectionsListFeatureComponent_ConnectionsListFeatureDependenciesComponent
                     .builder()
+                    .coreComponentsApi(CoreComponentsProvider.getCoreComponentsComponent())
                     .connectionsFeatureApi(getConnectionsFeatureComponent())
                     .navigationApi(NavigationComponent.get())
                     .build()

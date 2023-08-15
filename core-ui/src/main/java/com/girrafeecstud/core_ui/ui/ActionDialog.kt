@@ -17,7 +17,10 @@ class ActionDialog private constructor(
 
     fun show() {
 
-        val builder = AlertDialog.Builder(context)
+        val builder = AlertDialog.Builder(
+            context,
+            R.style.AlertDialogTheme
+        )
             .setTitle(dialogTitle)
             .setMessage(dialogMessage)
             .setPositiveButton(R.string.ok) { dialog, _ ->

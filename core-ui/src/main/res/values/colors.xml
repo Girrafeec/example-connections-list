@@ -21,4 +21,6 @@
     <color name="pale_pink">#CD6E67</color>
     <color name="light_gray">#F1F1F1</color>
     <color name="light_blue">#2DA5FF</color>
+    <color name="regular_gray">#A3A3A3</color>
+    <color name="purple_light">#9B7BF5</color>
 </resources>
